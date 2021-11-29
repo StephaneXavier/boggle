@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %} Boggle! {% endblock %}
+
+{% block h1%} <h1>Welcome to boggle!</h1> {% endblock %}
+
+{% block content %}
+<table>
+    {% for row in board%}
+    <tr>
+        {% for td in row %}
+        <td>{{td}}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+
+<form method="GET">
+    <input type="text" name="word" placeholder="guess here" id="user-guess">
+    <button>submit!</button>
+</form>
+
+<h2 id="score-tally"></h2>
+<p></p>
+{% endblock %}
