@@ -39,7 +39,14 @@ setTimeout(async function () {
             score: SCORE
         }
     )
-
+    
     alert('Time is up!')
     $('form').remove()
-}, 6000)
+
+    const respData = resp.data
+    const gamesPlayed = respData.length
+    const topScore = Math.max.apply(Math, respData)
+    $('#score-tally').text(`games played: ${gamesPlayed}, top score: ${topScore}`)
+
+    
+}, 5000)

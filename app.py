@@ -36,8 +36,7 @@ def save_score():
     
     """
     req = request.get_json()
-    print("%%%%%%%%%%%%%%%%%%%%%%%%%%")
-    print('current request.get_json() is =>',req['score'])
+    
     if not session.get('score'):
         session['score'] = [req['score']]
 
@@ -46,13 +45,7 @@ def save_score():
         score.append(req['score'])
         session['score'] = score
      
-        
-    print('current session["score"] is =>', session['score'] )
-    print("%%%%%%%%%%%%%%%%%%%%%%%%%%")
+    response = session['score']   
     # import pdb
     # pdb.set_trace()
-    return redirect ('/')
-    
-
-    
-   
+    return jsonify(response)
