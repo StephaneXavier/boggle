@@ -11,7 +11,7 @@ boggle_game = Boggle()
 def index():
     """
     from the instance of Boggle(), make the board and set the session['board']
-    to be that var. Pass that board onto index.html
+    to be that board. Pass that board into index.html
     """
     board = boggle_game.make_board()
     session['board'] = board
@@ -20,7 +20,7 @@ def index():
 @app.route('/guess')
 def user_guess():
     """
-    Receive the axios get parametres for the 'word' query string.
+    Receive the axios GET request parametres (query string) for the 'word' query string (line 16 of app.js params {word:...}).
     Set the response the server will return with the Boggle() method 
     of check_valid_word (which returns 'ok',' not-on-board' or 'not-a-word' )
     """
@@ -33,7 +33,9 @@ def user_guess():
 @app.route('/score', methods=['POST'])
 def save_score():
     """
-    
+    Receive the body of the POST request sent by axios and parse out the data.
+    If session['score'] doesn't exist, create it and set the first elem to be the posted data.
+    Else, append it to the session['score'] list. Return this list of scores as a response
     """
     req = request.get_json()
     

@@ -18,7 +18,8 @@ class AppRouteTests(TestCase):
             self.assertEqual(resp.status_code, 200)
             self.assertIn('<h1>Welcome to boggle!</h1>',html )
             self.assertIn('<td>', html )
-        
+    
+    
     def test_guess(self):
         with app.test_client() as client:
             with client.session_transaction() as session:
@@ -34,6 +35,11 @@ class AppRouteTests(TestCase):
     
     def test_score(self):
         with app.test_client() as client:
-            resp = client.get('/score?score=50')
-        import pdb
-        pdb.set_trace()
+            with client.session_transaction() as session:
+                session['score'] = [0,4,5]
+        
+
+        resp = client.post('/score', json={"score":50})
+        
+        self.assertEqual(resp.json, [0,4,5,50] )
+        
