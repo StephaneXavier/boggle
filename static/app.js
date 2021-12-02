@@ -30,10 +30,6 @@ async function checkUserGuess(e) {
 
         $userGuess.val('')
     }
-
-
-
-
 }
 
 $('button').on('click', checkUserGuess)
